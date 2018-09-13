@@ -1,0 +1,3 @@
+[submodule "Ceilidh.Standard"]
+	path = Ceilidh.Standard
+	url = https://github.com/Ceilidh-Team/Ceilidh.Standard.git
