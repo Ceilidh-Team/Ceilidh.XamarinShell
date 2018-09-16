@@ -22,6 +22,7 @@
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ProjectCeilidh.Cobble, Version=1.1.1.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
@@ -62,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GtkWindowProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,6 +73,10 @@
     <None Include="OpenTK.dll.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard.csproj">
+      <Project>{49189EA9-BF7B-4354-A26B-7325F0C518A9}</Project>
+      <Name>ProjectCeilidh.Ceilidh.Standard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectCeilidh.Ceilidh.XamarinShell\ProjectCeilidh.Ceilidh.XamarinShell.csproj">
       <Project>{285048D3-2C5E-4C31-B9B9-0EE55229B35F}</Project>
       <Name>ProjectCeilidh.Ceilidh.XamarinShell</Name>

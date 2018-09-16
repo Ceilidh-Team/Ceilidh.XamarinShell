@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ProjectCeilidh.Ceilidh.Standard;
+using System;
+using ProjectCeilidh.Ceilidh.Standard.Cobble;
+using ProjectCeilidh.Cobble;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.GTK;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
 {
@@ -11,14 +13,21 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
         {
 			Gtk.Application.Init();
 			Forms.Init();
-   
 
-            var window = new FormsWindow();
-			window.LoadApplication(new XamarinShell.App());
-			window.SetApplicationTitle("Ceilidh");
-			window.Show();
+            CeilidhLoader.LoadCeilidh(new CeilidhStartOptions(), x =>
+            {
+                x.AddManaged<GtkUnitLoader>();
+            });
 
-			Gtk.Application.Run();
+            Gtk.Application.Run();
+        }
+
+        public class GtkUnitLoader : IUnitLoader
+        {
+            public void RegisterUnits(CobbleContext context)
+            {
+                context.AddManaged<GtkWindowProvider>();
+            }
         }
     }
 }
