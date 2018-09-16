@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using AppKit;
+using Foundation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.MacOS;
 
@@ -32,20 +34,30 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
                 set => _window.IsVisible = value;
             }
 
-            public override (int Width, int Height) Size { get; set; }
-            public override (int X, int Y) Position { get; set; }
+            public override (double Width, double Height) Size { get; set; }
+            public override (double X, double Y) Position { get; set; }
 
             private readonly NSWindow _window;
 
             public MacWindowHandle(NSWindow window)
             {
                 _window = window;
+                _window.WindowShouldClose = WindowShouldClose;
+            }
+
+            private bool WindowShouldClose(NSObject sender)
+            {
+                var e = new CancelEventArgs();
+                Closing?.Invoke(this, e);
+                return !e.Cancel;
             }
 
             public override void Close()
             {
                 throw new NotImplementedException();
             }
+
+            public override event ClosingEventHandler Closing;
         }
     }
 }

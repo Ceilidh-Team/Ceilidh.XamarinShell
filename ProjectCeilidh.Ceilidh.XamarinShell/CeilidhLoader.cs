@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjectCeilidh.Ceilidh.Standard;
@@ -34,6 +35,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
                 window.Size = (640, 480);
                 window.Title = "Ceilidh";
                 window.IsVisible = true;
+                window.Closing += (sender, args) => Environment.Exit(0);
             }
 
             return mainContext;
@@ -63,6 +65,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
                 window.Size = (640, 480);
                 window.Title = "Ceilidh";
                 window.IsVisible = true;
+                window.Closing += (sender, args) => Environment.Exit(0);
             }
 
             return mainContext;

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace ProjectCeilidh.Ceilidh.XamarinShell
+﻿namespace ProjectCeilidh.Ceilidh.XamarinShell
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage
     {
         public MainPage()
         {

@@ -25,7 +25,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
         public override void DidFinishLaunching(NSNotification notification)
         {
             Forms.Init();
-            LoadApplication(new App());
+            // LoadApplication(new App());
             base.DidFinishLaunching(notification);
         }
 
