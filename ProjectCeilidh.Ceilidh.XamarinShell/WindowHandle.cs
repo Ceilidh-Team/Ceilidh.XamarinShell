@@ -10,6 +10,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
         public abstract bool IsVisible { get; set; }
         public abstract (double Width, double Height) Size { get; set; }
         public abstract (double X, double Y) Position { get; set; }
+        public abstract WindowHandle Owner { get; set; }
 
         public abstract void Close();
 

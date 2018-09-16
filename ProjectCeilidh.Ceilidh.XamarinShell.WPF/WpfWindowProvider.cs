@@ -1,16 +1,27 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using Xamarin.Forms;
+using Application = System.Windows.Application;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF
 {
     public class WpfWindowProvider : IWindowProvider
     {
-        public WindowHandle CreateWindow(Page page, bool isVisible)
+        public WindowHandle CreateWindow(Page page, WindowCreationFlags flags)
         {
-            var window = new PageWindow(page);
-            window.Show();
-            return new WpfWindowHandle(window);
+            return Application.Current.Dispatcher.Invoke(() =>
+            {
+                var window = new PageWindow(page)
+                {
+                    ShowInTaskbar = !flags.HasFlag(WindowCreationFlags.Popup),
+                };
+
+                if (!flags.HasFlag(WindowCreationFlags.Popup))
+                    Application.Current.MainWindow = window;
+
+                window.Show();
+                return new WpfWindowHandle(window);
+            });
         }
 
         private class WpfWindowHandle : WindowHandle
@@ -39,11 +50,18 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF
                 set => (_window.Left, _window.Top) = value;
             }
 
+            public override WindowHandle Owner
+            {
+                get => _window.Owner == null ? null : (WindowHandle) (_window.Owner.Tag ?? (_window.Owner.Tag = new WpfWindowHandle(_window.Owner)));
+                set => _window.Owner = (value as WpfWindowHandle)?._window;
+            }
+
             private readonly Window _window;
 
             public WpfWindowHandle(Window window)
             {
                 _window = window;
+                _window.Tag = this;
                 _window.Closing += WindowOnClosing;
             }
 

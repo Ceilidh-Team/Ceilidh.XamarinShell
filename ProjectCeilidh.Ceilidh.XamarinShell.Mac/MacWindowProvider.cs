@@ -36,6 +36,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
 
             public override (double Width, double Height) Size { get; set; }
             public override (double X, double Y) Position { get; set; }
+            public override WindowHandle Owner { get; set; }
 
             private readonly NSWindow _window;
 

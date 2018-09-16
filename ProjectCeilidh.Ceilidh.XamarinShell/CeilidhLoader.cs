@@ -30,7 +30,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
             if (mainContext.TryGetSingleton(out IWindowProvider provider))
             {
-                var window = provider.CreateWindow(new MainPage(), false);
+                var window = provider.CreateWindow(new MainPage(), 0);
                 window.Size = (640, 480);
                 window.Title = "Ceilidh";
                 window.IsVisible = true;
@@ -60,7 +60,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
             if (mainContext.TryGetSingleton(out IWindowProvider provider))
             {
-                var window = provider.CreateWindow(new MainPage(), false);
+                var window = provider.CreateWindow(new MainPage(), 0);
                 window.Size = (640, 480);
                 window.Title = "Ceilidh";
                 window.IsVisible = true;

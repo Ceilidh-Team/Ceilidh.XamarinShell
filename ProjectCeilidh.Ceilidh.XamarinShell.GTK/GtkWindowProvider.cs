@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using Gtk;
 using Xamarin.Forms;
@@ -8,11 +9,18 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
 {
     public class GtkWindowProvider : IWindowProvider
     {
-        public WindowHandle CreateWindow(Page page, bool isVisible)
+        public WindowHandle CreateWindow(Page page, WindowCreationFlags flags)
         {
-            var window = new Window(WindowType.Toplevel) { Child = page.CreateContainer(), Visible = isVisible };
+            var window = new Window(flags.HasFlag(WindowCreationFlags.Popup) ? WindowType.Popup : WindowType.Toplevel)
+            {
+                Child = page.CreateContainer(),
+                Visible = !flags.HasFlag(WindowCreationFlags.Hidden),
+                Modal = flags.HasFlag(WindowCreationFlags.Modal)
+            };
+
             window.SetSizeRequest(0, 0);
             window.Destroyed += WindowOnDestroyed;
+
             return new GtkWindowHandle(window);
         }
 
@@ -23,6 +31,9 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
 
         private class GtkWindowHandle : WindowHandle
         {
+            private static readonly ConcurrentDictionary<Window, GtkWindowHandle> _handles =
+                new ConcurrentDictionary<Window, GtkWindowHandle>();
+
             public override string Title
             {
                 get => _window.Title;
@@ -55,6 +66,12 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
                 set => _window.Move((int)value.X, (int)value.Y);
             }
 
+            public override WindowHandle Owner
+            {
+                get => GetWindowHandle((Window) _window.Parent.Toplevel);
+                set => _window.Parent = (value as GtkWindowHandle)?._window;
+            }
+
             private readonly Window _window;
 
             public GtkWindowHandle(Window window)
@@ -77,9 +94,15 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
                 _window.Hide();
                 _window.Destroy();
                 _window.Dispose();
+                _handles.TryRemove(_window, out _);
             }
 
             public override event ClosingEventHandler Closing;
+
+            public static GtkWindowHandle GetWindowHandle(Window window)
+            {
+                return _handles.GetOrAdd(window, x => new GtkWindowHandle(x));
+            }
         }
     }
 }
