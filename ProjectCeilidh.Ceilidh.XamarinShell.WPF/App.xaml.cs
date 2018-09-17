@@ -23,6 +23,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF
             public void RegisterUnits(CobbleContext context)
             {
                 context.AddManaged<WpfWindowProvider>();
+                context.AddManaged<WpfNotificationProvider>();
             }
         }
     }

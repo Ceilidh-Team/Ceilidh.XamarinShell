@@ -15,8 +15,7 @@
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FFmpeg.AutoGen" Version="4.0.0.4" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
     <PackageReference Include="ProjectCeilidh.Cobble" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
