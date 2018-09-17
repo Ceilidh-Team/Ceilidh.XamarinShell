@@ -1,32 +1,21 @@
 ﻿using AppKit;
 using Foundation;
+using ProjectCeilidh.Ceilidh.Standard;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.MacOS;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
 {
     [Register("AppDelegate")]
-    public sealed class AppDelegate : FormsApplicationDelegate
+    public sealed class AppDelegate : NSApplicationDelegate
     {
-        public override NSWindow MainWindow { get; }
-
-        public AppDelegate()
-        {
-            MainWindow = new NSWindow(new CoreGraphics.CGRect(200, 1000, 1024, 768), NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled | NSWindowStyle.Miniaturizable, NSBackingStore.Buffered, false)
-            {
-                Title = "Ceilidh",
-                TitleVisibility = NSWindowTitleVisibility.Visible,
-
-            };
-        }
-
         public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender) => true;
 
         public override void DidFinishLaunching(NSNotification notification)
         {
             Forms.Init();
-            // LoadApplication(new App());
-            base.DidFinishLaunching(notification);
+            CeilidhLoader.LoadCeilidh(new CeilidhStartOptions(), x => {
+                x.AddManaged<MacUnitLoader>();
+            });
         }
 
         public static void Main(string[] args)

@@ -75,6 +75,9 @@
     <Reference Include="ProjectCeilidh.Cobble">
       <HintPath>..\packages\ProjectCeilidh.Cobble.1.1.1\lib\netstandard2.0\ProjectCeilidh.Cobble.dll</HintPath>
     </Reference>
+    <Reference Include="FFmpeg.AutoGen">
+      <HintPath>..\packages\FFmpeg.AutoGen.4.0.0.4\lib\netstandard2.0\FFmpeg.AutoGen.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -101,11 +104,17 @@
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MacWindowProvider.cs" />
+    <Compile Include="MacUnitLoader.cs" />
+    <Compile Include="MacNotificationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectCeilidh.Ceilidh.XamarinShell\ProjectCeilidh.Ceilidh.XamarinShell.csproj">
       <Project>{285048D3-2C5E-4C31-B9B9-0EE55229B35F}</Project>
       <Name>ProjectCeilidh.Ceilidh.XamarinShell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard.csproj">
+      <Project>{49189EA9-BF7B-4354-A26B-7325F0C518A9}</Project>
+      <Name>ProjectCeilidh.Ceilidh.Standard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />

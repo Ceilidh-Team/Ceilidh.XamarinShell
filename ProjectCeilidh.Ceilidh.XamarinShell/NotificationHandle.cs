@@ -1,6 +1,6 @@
 ﻿namespace ProjectCeilidh.Ceilidh.XamarinShell
 {
-    public delegate void NotificationActionCallback();
+    public delegate void NotificationActionEventHandler(string label);
 
     public abstract class NotificationHandle
     {
@@ -8,15 +8,8 @@
         public abstract string Text { get; set; }
 
         public abstract void Show();
-        public abstract NotificationAction CreateAction();
+        public abstract void CreateAction(string label);
 
-        public abstract event NotificationActionCallback DefaultAction;
-    }
-
-    public abstract class NotificationAction
-    {
-        public string Label { get; set; }
-
-        public abstract event NotificationActionCallback Action;
+        public abstract event NotificationActionEventHandler NotificationAction;
     }
 }
