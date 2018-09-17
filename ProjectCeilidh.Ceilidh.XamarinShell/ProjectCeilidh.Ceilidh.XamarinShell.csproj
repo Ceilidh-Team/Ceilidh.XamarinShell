@@ -21,4 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="NotificationHandle.cs" />
+  </ItemGroup>
 </Project>

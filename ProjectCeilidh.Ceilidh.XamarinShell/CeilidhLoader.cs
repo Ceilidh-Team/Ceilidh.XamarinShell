@@ -38,12 +38,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
                 if (mainContext.TryGetSingleton(out INotificationProvider notification))
                 {
-                    var handle = notification.CreateNotification();
-                    handle.Title = "Henlo Friend";
-                    handle.Text = "This is a test notification!";
-                    handle.CreateAction("More");
-                    handle.NotificationAction += (label) => Environment.Exit(0);
-                    handle.Show();
+                    notification.Action += (sender, e) => Environment.Exit(0);
+                    notification.DisplayNotification("exit", "Henlo Friend", "This is a text notification");
                 }
             }
 
@@ -78,12 +74,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
                 if (mainContext.TryGetSingleton(out INotificationProvider notification))
                 {
-                    var handle = notification.CreateNotification();
-                    handle.Title = "Henlo Friend";
-                    handle.Text = "This is a test notification!";
-                    handle.CreateAction("More");
-                    handle.NotificationAction += (label) => Environment.Exit(0);
-                    handle.Show();
+                    notification.Action += (sender, e) => Environment.Exit(0);
+                    notification.DisplayNotification("exit", "Henlo Friend", "This is a text notification");
                 }
             }
 

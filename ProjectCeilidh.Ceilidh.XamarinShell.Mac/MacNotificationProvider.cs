@@ -1,4 +1,4 @@
-﻿using System;
+﻿using AppKit;
 using Foundation;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
@@ -7,62 +7,28 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
     {
         public MacNotificationProvider()
         {
+            NSUserNotificationCenter.DefaultUserNotificationCenter.DidActivateNotification +=
+                (sender, e) => Action?.Invoke(this, new NotificationActionEventArgs(e.Notification.Identifier));
         }
 
-        public NotificationHandle CreateNotification()
+        public void DisplayNotification(string identifier, string title, string text)
         {
-            return new MacNotificationHandle();
+            using (var notification = new NSUserNotification
+            {
+                Identifier = identifier,
+                Title = title,
+                InformativeText = text,
+                SoundName = NSUserNotification.NSUserNotificationDefaultSoundName
+            })
+                NSUserNotificationCenter.DefaultUserNotificationCenter.DeliverNotification(notification);
+
         }
 
-        private class MacNotificationHandle : NotificationHandle
+        public void RequestUserAttention()
         {
-            public override string Title { get => _notification.Title; set => _notification.Title = value; }
-            public override string Text { get => _notification.InformativeText; set => _notification.InformativeText = value; }
-
-            private readonly NSUserNotification _notification;
-
-            public MacNotificationHandle()
-            {
-                _notification = new NSUserNotification
-                {
-                    SoundName = NSUserNotification.NSUserNotificationDefaultSoundName,
-                    Identifier = Guid.NewGuid().ToString()
-                };
-
-                NSUserNotificationCenter.DefaultUserNotificationCenter.DidActivateNotification += DefaultUserNotificationCenter_DidActivateNotification;
-                NSUserNotificationCenter.DefaultUserNotificationCenter.ShouldPresentNotification = (a, b) => true;
-            }
-
-            private void DefaultUserNotificationCenter_DidActivateNotification(object sender, UNCDidActivateNotificationEventArgs e)
-            {
-                if (_notification.Identifier != e.Notification.Identifier) return;
-
-                switch (e.Notification.ActivationType)
-                {
-                    case NSUserNotificationActivationType.ContentsClicked:
-                        NotificationAction?.Invoke(null);
-                        break;
-                    case NSUserNotificationActivationType.AdditionalActionClicked:
-                        NotificationAction?.Invoke(e.Notification.Title);
-                        break;
-                }
-            }
-
-
-            public override void CreateAction(string label)
-            {
-                _notification.HasActionButton = true;
-                _notification.AdditionalActions = new [] {
-                    NSUserNotificationAction.GetAction("more", label)
-                };
-            }
-
-            public override void Show()
-            {
-                NSUserNotificationCenter.DefaultUserNotificationCenter.DeliverNotification(_notification);
-            }
-
-            public override event NotificationActionEventHandler NotificationAction;
+            NSApplication.SharedApplication.RequestUserAttention(NSRequestUserAttentionType.CriticalRequest);
         }
+
+        public event NotificationActionEventHandler Action;
     }
 }

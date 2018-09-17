@@ -49,6 +49,9 @@
     <Compile Include="GtkWindowProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LibNotify\NotifyNotification.cs" />
+    <Compile Include="GtkNotificationProvider.cs" />
+    <Compile Include="LibNotify\GError.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard\ProjectCeilidh.Ceilidh.Standard.csproj">
@@ -67,6 +70,9 @@
     <PackageReference Include="Xamarin.Forms.Platform.GTK">
       <Version>3.2.0.839982</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LibNotify\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
