@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:comp="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Component"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.MainPage"
     BackgroundColor="White">
     <Grid>
@@ -10,6 +11,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">Top</Label>
-        <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">Bottom</Label>
+        <comp:ComponentSlot SlotName="Slot" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" />
     </Grid>
 </ContentPage>

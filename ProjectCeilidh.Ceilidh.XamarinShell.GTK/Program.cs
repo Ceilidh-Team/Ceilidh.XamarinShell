@@ -27,7 +27,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
             public void RegisterUnits(CobbleContext context)
             {
                 context.AddManaged<GtkWindowProvider>();
-                context.AddManaged<GtkNotificationProvider>();
+                // context.AddManaged<GtkNotificationProvider>();
             }
         }
     }

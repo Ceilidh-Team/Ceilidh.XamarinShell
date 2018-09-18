@@ -23,5 +23,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="NotificationHandle.cs" />
+    <Compile Remove="Component\UiComponent.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Component\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Component\UiComponent.xaml" />
   </ItemGroup>
 </Project>
