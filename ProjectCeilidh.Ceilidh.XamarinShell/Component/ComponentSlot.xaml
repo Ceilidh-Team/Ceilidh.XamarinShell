@@ -5,8 +5,9 @@
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot">
     <TemplatedView.ControlTemplate>
         <ControlTemplate>
-            <StackLayout FlowDirection="r">
+            <StackLayout Orientation="Vertical">
                 <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Click to place a component here..." />
+                <Button Text="I'm a button!"/>
             </StackLayout>
         </ControlTemplate>
     </TemplatedView.ControlTemplate>
