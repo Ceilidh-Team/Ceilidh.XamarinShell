@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ProjectCeilidh.Ceilidh.Standard;
 using ProjectCeilidh.Ceilidh.Standard.Cobble;
@@ -40,6 +41,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
                 {
                     notification.Action += (sender, e) => Environment.Exit(0);
                     notification.DisplayNotification("exit", "Henlo Friend", "This is a text notification");
+                    Thread.Sleep(1000);
+                    notification.RequestUserAttention();
                 }
             }
 
@@ -76,6 +79,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
                 {
                     notification.Action += (sender, e) => Environment.Exit(0);
                     notification.DisplayNotification("exit", "Henlo Friend", "This is a text notification");
+                    Thread.Sleep(1000);
+                    notification.RequestUserAttention();
                 }
             }
 

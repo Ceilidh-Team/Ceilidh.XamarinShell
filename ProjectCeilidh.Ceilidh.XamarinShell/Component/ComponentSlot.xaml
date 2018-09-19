@@ -11,9 +11,6 @@
         <ControlTemplate>
             <StackLayout Orientation="Vertical">
                 <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Click to place a component here..." />
-                <c:Button>
-                    <Label Text="Button!"/>
-                </c:Button>
             </StackLayout>
         </ControlTemplate>
     </TemplatedView.ControlTemplate>

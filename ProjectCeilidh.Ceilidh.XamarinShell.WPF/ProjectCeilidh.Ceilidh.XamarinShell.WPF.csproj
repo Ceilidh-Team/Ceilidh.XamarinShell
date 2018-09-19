@@ -81,10 +81,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Notification\DesktopNotificationManagerCompat.cs" />
+    <Compile Include="Notification\WpfNotificationActivator.cs" />
     <Compile Include="PageWindow.xaml.cs">
       <DependentUpon>PageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WpfNotificationProvider.cs" />
+    <Compile Include="Notification\WpfNotificationProvider.cs" />
     <Compile Include="WpfWindowProvider.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

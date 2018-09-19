@@ -16,7 +16,7 @@
     {
         void RequestUserAttention();
 
-        void DisplayNotification(string identifier, string title, string text);
+        bool DisplayNotification(string identifier, string title, string text);
 
         event NotificationActionEventHandler Action;
     }

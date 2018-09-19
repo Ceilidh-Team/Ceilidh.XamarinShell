@@ -7,7 +7,9 @@
     BackgroundColor="White">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary Source="/GlobalResources.xaml"/>
+            <ResourceDictionary.MergedDictionaries>
+                <!--ResourceDictionary Source="/GlobalResources.xaml"/-->
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
