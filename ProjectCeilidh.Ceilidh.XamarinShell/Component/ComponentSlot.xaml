@@ -2,12 +2,18 @@
 <TemplatedView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot">
+    <TemplatedView.GestureRecognizers>
+        <TapGestureRecognizer></TapGestureRecognizer>
+    </TemplatedView.GestureRecognizers>
     <TemplatedView.ControlTemplate>
         <ControlTemplate>
             <StackLayout Orientation="Vertical">
                 <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Click to place a component here..." />
-                <Button Text="I'm a button!"/>
+                <c:Button>
+                    <Label Text="Button!"/>
+                </c:Button>
             </StackLayout>
         </ControlTemplate>
     </TemplatedView.ControlTemplate>

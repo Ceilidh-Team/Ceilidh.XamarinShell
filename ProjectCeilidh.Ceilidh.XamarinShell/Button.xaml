@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Button" x:Name="Parent">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Command, Source={x:Reference Parent}}"/>
+    </ContentView.GestureRecognizers>
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid BackgroundColor="Gray" Padding="3">
+                <ContentPresenter Content="{TemplateBinding Content}" HorizontalOptions=""/>
+            </Grid>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

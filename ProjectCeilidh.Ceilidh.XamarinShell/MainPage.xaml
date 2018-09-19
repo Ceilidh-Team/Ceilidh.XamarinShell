@@ -5,6 +5,11 @@
     xmlns:comp="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Component"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.MainPage"
     BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="/GlobalResources.xaml"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Border">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid>
+                <BoxView CornerRadius="0" Color=""/>
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Grid>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>
