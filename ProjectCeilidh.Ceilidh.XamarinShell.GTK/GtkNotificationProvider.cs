@@ -1,4 +1,5 @@
-﻿using ProjectCeilidh.Ceilidh.XamarinShell.GTK.LibNotify;
+﻿using System;
+using ProjectCeilidh.Ceilidh.XamarinShell.GTK.LibNotify;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
 {
@@ -19,7 +20,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
                 notify.AddAction("default", null, NotifyActionCallback, this);
                 return notify.Show(out _);
             }
-            catch
+            catch (DllNotFoundException)
             {
                 return false;
             }

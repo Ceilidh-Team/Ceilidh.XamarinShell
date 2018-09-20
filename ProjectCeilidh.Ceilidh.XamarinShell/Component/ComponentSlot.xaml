@@ -2,9 +2,9 @@
 <TemplatedView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot">
+    x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot" x:Name="Parent">
     <TemplatedView.GestureRecognizers>
-        <TapGestureRecognizer></TapGestureRecognizer>
+        <TapGestureRecognizer Command="{Binding Source={x:Reference Parent}}"></TapGestureRecognizer>
     </TemplatedView.GestureRecognizers>
     <TemplatedView.ControlTemplate>
         <ControlTemplate>
