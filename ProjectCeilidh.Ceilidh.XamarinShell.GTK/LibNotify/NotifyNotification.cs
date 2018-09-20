@@ -13,7 +13,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK.LibNotify
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private delegate void NotifyActionCallback(IntPtr notificationPtr, string action, IntPtr opaque);
 
-        private static readonly GFreeFunc GCHandleFreeFuncDelegate = ptr =>
+        private static readonly GFreeFunc GcHandleFreeFuncDelegate = ptr =>
         {
             if (ptr == IntPtr.Zero) return;
 
@@ -54,7 +54,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK.LibNotify
 
         public void AddAction<T>(string action, string label, NotifyActionCallback<T> callback, T userData)
         {
-            NotifyNotificationAddAction(_notificationPtr, action, label, NotifyActionCallbackDelegate, GCHandle.ToIntPtr(GCHandle.Alloc(new UserData(callback, userData))), GCHandleFreeFuncDelegate);
+            NotifyNotificationAddAction(_notificationPtr, action, label, NotifyActionCallbackDelegate, GCHandle.ToIntPtr(GCHandle.Alloc(new UserData(callback, userData))), GcHandleFreeFuncDelegate);
         }
 
         private class UserData

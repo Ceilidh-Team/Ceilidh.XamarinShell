@@ -31,7 +31,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
 
         private class GtkWindowHandle : WindowHandle
         {
-            private static readonly ConcurrentDictionary<Window, GtkWindowHandle> _handles =
+            private static readonly ConcurrentDictionary<Window, GtkWindowHandle> Handles =
                 new ConcurrentDictionary<Window, GtkWindowHandle>();
 
             public override string Title
@@ -94,14 +94,14 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
                 _window.Hide();
                 _window.Destroy();
                 _window.Dispose();
-                _handles.TryRemove(_window, out _);
+                Handles.TryRemove(_window, out _);
             }
 
             public override event ClosingEventHandler Closing;
 
             public static GtkWindowHandle GetWindowHandle(Window window)
             {
-                return _handles.GetOrAdd(window, x => new GtkWindowHandle(x));
+                return Handles.GetOrAdd(window, x => new GtkWindowHandle(x));
             }
         }
     }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Xml;
 using System.Xml.Serialization;
-using Windows.ApplicationModel;
 using Windows.UI.Notifications;
 using XmlDocument = Windows.Data.Xml.Dom.XmlDocument;
 
@@ -25,34 +23,41 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF.Notification
         {
             if (_toastNotifier == null) return false;
 
-            var content = new ToastContent
+            try
             {
-                Launch = identifier,
-                Visual = new ToastVisual
+                var content = new ToastContent
                 {
-                    BindingGeneric = new ToastBindingGeneric
+                    Launch = identifier,
+                    Visual = new ToastVisual
                     {
-                        Text = new[]
+                        BindingGeneric = new ToastBindingGeneric
                         {
-                            title,
-                            text
+                            Text = new[]
+                            {
+                                title,
+                                text
+                            }
                         }
                     }
+                };
+
+                var doc = new XmlDocument();
+                using (var str = new StringWriter())
+                using (var xmlWriter = XmlWriter.Create(str))
+                {
+                    new XmlSerializer(typeof(ToastContent)).Serialize(xmlWriter, content);
+
+                    doc.LoadXml(str.ToString());
                 }
-            };
 
-            var doc = new XmlDocument();
-            using (var str = new StringWriter())
-            using (var xmlWriter = XmlWriter.Create(str))
-            {
-                new XmlSerializer(typeof(ToastContent)).Serialize(xmlWriter, content);
-
-                doc.LoadXml(str.ToString());
+                var notification = new ToastNotification(doc);
+                _toastNotifier.Show(notification);
+                return true;
             }
-
-            var notification = new ToastNotification(doc);
-            _toastNotifier.Show(notification);
-            return true;
+            catch
+            {
+                return false;
+            }
         }
 
         public void RequestUserAttention()
@@ -71,17 +76,10 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF.Notification
             FlashWindowEx(ref info);
         }
 
-        private NotificationActionEventHandler _action;
         public event NotificationActionEventHandler Action
         {
-            add
-            {
-                // TODO
-            }
-            remove
-            {
-
-            }
+            add => WpfNotificationActivator.Activated += value;
+            remove => WpfNotificationActivator.Activated -= value;
         }
 
         #region Native

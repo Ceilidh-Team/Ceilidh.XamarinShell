@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using ProjectCeilidh.Ceilidh.XamarinShell.GTK.LibNotify;
+﻿using ProjectCeilidh.Ceilidh.XamarinShell.GTK.LibNotify;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
 {
@@ -13,14 +11,17 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
             provider.Action?.Invoke(provider, new NotificationActionEventArgs());
         };
 
-        public void DisplayNotification(string identifier, string title, string text)
+        public bool DisplayNotification(string identifier, string title, string text)
         {
-            var notify = new LibNotify.NotifyNotification(title, text, "dialog-information");
-            notify.AddAction("default", null, NotifyActionCallback, this);
-            if (!notify.Show(out var error))
+            try
             {
-                var err = Marshal.PtrToStructure<GError>(error);
-                Console.WriteLine(Marshal.PtrToStringAnsi(err.message));
+                var notify = new NotifyNotification(title, text, "dialog-information");
+                notify.AddAction("default", null, NotifyActionCallback, this);
+                return notify.Show(out _);
+            }
+            catch
+            {
+                return false;
             }
         }
 
