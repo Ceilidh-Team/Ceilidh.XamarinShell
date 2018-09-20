@@ -2,15 +2,25 @@
 <TemplatedView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot" x:Name="Parent">
-    <TemplatedView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding Source={x:Reference Parent}}"></TapGestureRecognizer>
-    </TemplatedView.GestureRecognizers>
+    xmlns:conv="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Converters"
+    x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot">
+    <TemplatedView.Resources>
+        <ResourceDictionary>
+            <conv:EqualToConverter x:Key="EqualToConverter"/>
+        </ResourceDictionary>
+    </TemplatedView.Resources>
     <TemplatedView.ControlTemplate>
         <ControlTemplate>
-            <StackLayout Orientation="Vertical">
-                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Click to place a component here..." />
-            </StackLayout>
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Button Text="Add Component" HorizontalOptions="Center" VerticalOptions="Center" Command="{TemplateBinding SetComponentCommand, Mode=OneTime}"/>
+                <ContentView.Triggers>
+                    <DataTrigger TargetType="ContentView" Binding="{TemplateBinding Component, Mode=OneWay, Converter={StaticResource EqualToConverter}, ConverterParameter={x:Null}}" Value="False">
+                        <DataTrigger.Setters>
+                            <Setter Property="Content" Value="{TemplateBinding Component, Mode=OneWay}" />
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                </ContentView.Triggers>
+            </ContentView>
         </ControlTemplate>
     </TemplatedView.ControlTemplate>
 </TemplatedView>

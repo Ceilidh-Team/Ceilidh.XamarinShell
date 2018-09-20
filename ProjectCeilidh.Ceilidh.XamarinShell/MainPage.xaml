@@ -3,13 +3,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:comp="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Component"
+    xmlns:local="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.MainPage"
     BackgroundColor="White">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="GlobalResources.xaml"/>
-            </ResourceDictionary.MergedDictionaries-->
+            <ResourceDictionary.MergedDictionaries>
+                <local:GlobalResources />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -18,6 +19,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">Top</Label>
-        <comp:ComponentSlot SlotName="Slot" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" />
+        <comp:ComponentSlot SlotName="Slot" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>

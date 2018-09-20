@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using ProjectCeilidh.Ceilidh.Standard;
 using ProjectCeilidh.Ceilidh.Standard.Cobble;
@@ -11,8 +10,12 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 {
     public static class CeilidhLoader
     {
+        public static CobbleContext Instance { get; private set; }
+
         public static CobbleContext LoadCeilidh(CeilidhStartOptions startOptions, Action<CobbleContext> loaderCallback)
         {
+            if (Instance != null) throw new NotSupportedException();
+
             var loaderContext = new CobbleContext();
             foreach (var loader in typeof(IUnitLoader).Assembly.GetExportedTypes()
                 .Where(x => x != typeof(IUnitLoader) && typeof(IUnitLoader).IsAssignableFrom(x)))
@@ -29,6 +32,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
             mainContext.Execute();
 
+            Instance = mainContext;
+
             if (mainContext.TryGetSingleton(out IWindowProvider provider))
             {
                 var window = provider.CreateWindow(new MainPage(), 0);
@@ -36,14 +41,6 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
                 window.Title = "Ceilidh";
                 window.IsVisible = true;
                 window.Closing += (sender, args) => Environment.Exit(0);
-
-                if (mainContext.TryGetSingleton(out INotificationProvider notification))
-                {
-                    notification.Action += (sender, e) => Environment.Exit(0);
-                    notification.DisplayNotification("exit", "Henlo Friend", "This is a text notification");
-                    Thread.Sleep(1000);
-                    notification.RequestUserAttention();
-                }
             }
 
             return mainContext;
@@ -51,6 +48,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
         public static async Task<CobbleContext> LoadCeilidhAsync(CeilidhStartOptions startOptions, Action<CobbleContext> loaderCallback)
         {
+            if (Instance != null) throw new NotSupportedException();
+
             var loaderContext = new CobbleContext();
             foreach (var loader in typeof(IUnitLoader).Assembly.GetExportedTypes()
                 .Where(x => x != typeof(IUnitLoader) && typeof(IUnitLoader).IsAssignableFrom(x)))
@@ -67,6 +66,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
             await mainContext.ExecuteAsync();
 
+            Instance = mainContext;
+
             if (mainContext.TryGetSingleton(out IWindowProvider provider))
             {
                 var window = provider.CreateWindow(new MainPage(), 0);
@@ -74,15 +75,8 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
                 window.Title = "Ceilidh";
                 window.IsVisible = true;
                 window.Closing += (sender, args) => Environment.Exit(0);
-
-                if (mainContext.TryGetSingleton(out INotificationProvider notification))
-                {
-                    notification.Action += (sender, e) => Environment.Exit(0);
-                    notification.DisplayNotification("exit", "Henlo Friend", "This is a text notification");
-                    Thread.Sleep(1000);
-                    notification.RequestUserAttention();
-                }
             }
+
 
             return mainContext;
         }
