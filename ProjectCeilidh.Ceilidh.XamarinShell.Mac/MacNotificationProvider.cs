@@ -11,7 +11,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
                 (sender, e) => Action?.Invoke(this, new NotificationActionEventArgs(e.Notification.Identifier));
         }
 
-        public void DisplayNotification(string identifier, string title, string text)
+        public bool DisplayNotification(string identifier, string title, string text)
         {
             using (var notification = new NSUserNotification
             {
@@ -22,6 +22,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
             })
                 NSUserNotificationCenter.DefaultUserNotificationCenter.DeliverNotification(notification);
 
+            return true;
         }
 
         public void RequestUserAttention()
