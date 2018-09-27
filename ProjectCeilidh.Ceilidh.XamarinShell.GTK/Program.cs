@@ -1,6 +1,7 @@
 ﻿using ProjectCeilidh.Ceilidh.Standard;
 using System;
 using ProjectCeilidh.Ceilidh.Standard.Cobble;
+using ProjectCeilidh.Ceilidh.XamarinShell.Ceilidh;
 using ProjectCeilidh.Cobble;
 using Xamarin.Forms;
 

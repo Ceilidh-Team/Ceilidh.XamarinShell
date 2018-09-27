@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace ProjectCeilidh.Ceilidh.XamarinShell
+namespace ProjectCeilidh.Ceilidh.XamarinShell.Cobble
 {
     public interface IWindowProvider
     {

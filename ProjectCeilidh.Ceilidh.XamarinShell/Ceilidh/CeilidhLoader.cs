@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProjectCeilidh.Ceilidh.Standard;
 using ProjectCeilidh.Ceilidh.Standard.Cobble;
+using ProjectCeilidh.Ceilidh.XamarinShell.Cobble;
 using ProjectCeilidh.Cobble;
 
-namespace ProjectCeilidh.Ceilidh.XamarinShell
+namespace ProjectCeilidh.Ceilidh.XamarinShell.Ceilidh
 {
     public static class CeilidhLoader
     {
@@ -54,6 +55,11 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
             foreach (var loader in typeof(IUnitLoader).Assembly.GetExportedTypes()
                 .Where(x => x != typeof(IUnitLoader) && typeof(IUnitLoader).IsAssignableFrom(x)))
                 loaderContext.AddManaged(loader);
+
+            foreach (var loader in typeof(CeilidhLoader).Assembly.GetExportedTypes()
+                .Where(x => typeof(IUnitLoader).IsAssignableFrom(x)))
+                loaderContext.AddManaged(loader);
+
             loaderCallback?.Invoke(loaderContext);
             loaderContext.AddUnmanaged(startOptions);
             await loaderContext.ExecuteAsync();

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using ProjectCeilidh.Ceilidh.XamarinShell.Cobble;
 using Xamarin.Forms;
 using Application = System.Windows.Application;
 
@@ -65,10 +66,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF
                 _window.Closing += WindowOnClosing;
             }
 
-            private void WindowOnClosing(object sender, CancelEventArgs e)
-            {
-                Closing?.Invoke(this, e);
-            }
+            private void WindowOnClosing(object sender, CancelEventArgs e) => Closing?.Invoke(this, e);
 
             public override void Close()
             {
@@ -76,7 +74,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF
                 _window.Close();
             }
 
-            public override event ClosingEventHandler Closing;
+            public override event CancelEventHandler Closing;
         }
     }
 }

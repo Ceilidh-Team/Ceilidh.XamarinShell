@@ -1,4 +1,4 @@
-﻿namespace ProjectCeilidh.Ceilidh.XamarinShell
+﻿namespace ProjectCeilidh.Ceilidh.XamarinShell.Cobble
 {
     public delegate void NotificationActionEventHandler(object sender, NotificationActionEventArgs e);
 

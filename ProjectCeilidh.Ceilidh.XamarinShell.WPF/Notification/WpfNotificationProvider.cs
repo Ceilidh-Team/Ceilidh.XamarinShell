@@ -6,6 +6,7 @@ using System.Windows.Interop;
 using System.Xml;
 using System.Xml.Serialization;
 using Windows.UI.Notifications;
+using ProjectCeilidh.Ceilidh.XamarinShell.Cobble;
 using XmlDocument = Windows.Data.Xml.Dom.XmlDocument;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.WPF.Notification

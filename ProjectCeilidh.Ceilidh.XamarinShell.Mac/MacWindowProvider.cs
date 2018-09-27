@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.ComponentModel;
 using AppKit;
 using Foundation;
+using ProjectCeilidh.Ceilidh.XamarinShell.Cobble;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.MacOS;
 
@@ -84,7 +85,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
                 return _windows.GetOrAdd(window, x => new MacWindowHandle(window));
             }
 
-            public override event ClosingEventHandler Closing;
+            public override event CancelEventHandler Closing;
         }
     }
 }

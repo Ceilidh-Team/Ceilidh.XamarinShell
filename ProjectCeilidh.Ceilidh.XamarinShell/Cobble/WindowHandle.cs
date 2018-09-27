@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
+using Xamarin.Forms;
 
-namespace ProjectCeilidh.Ceilidh.XamarinShell
+namespace ProjectCeilidh.Ceilidh.XamarinShell.Cobble
 {
-    public delegate void ClosingEventHandler(object sender, CancelEventArgs e);
 
     public abstract class WindowHandle
     {
@@ -14,6 +14,6 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell
 
         public abstract void Close();
 
-        public abstract event ClosingEventHandler Closing;
+        public abstract event CancelEventHandler Closing;
     }
 }

@@ -4,21 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:comp="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Component"
     xmlns:local="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell"
+    xmlns:l="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Localization;assembly=ProjectCeilidh.Ceilidh.XamarinShell"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.MainPage"
     BackgroundColor="White">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <local:GlobalResources />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">Top</Label>
+        <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Text="{l:LocalizedString Key=hello, Argument=Xamarin}"/>
         <comp:ComponentSlot SlotName="Slot" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>

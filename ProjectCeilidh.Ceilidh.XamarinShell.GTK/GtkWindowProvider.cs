@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.ComponentModel;
 using Gtk;
+using ProjectCeilidh.Ceilidh.XamarinShell.Cobble;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.GTK.Extensions;
 
@@ -97,7 +98,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
                 Handles.TryRemove(_window, out _);
             }
 
-            public override event ClosingEventHandler Closing;
+            public override event CancelEventHandler Closing;
 
             public static GtkWindowHandle GetWindowHandle(Window window)
             {

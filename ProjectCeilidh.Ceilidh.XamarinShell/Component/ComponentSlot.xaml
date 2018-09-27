@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:conv="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Converters"
+    xmlns:localization="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Localization;assembly=ProjectCeilidh.Ceilidh.XamarinShell"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot">
     <TemplatedView.Resources>
         <ResourceDictionary>
@@ -12,7 +13,7 @@
     <TemplatedView.ControlTemplate>
         <ControlTemplate>
             <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Button Text="Add Component" HorizontalOptions="Center" VerticalOptions="Center" Command="{TemplateBinding SetComponentCommand, Mode=OneTime}"/>
+                <Button Text="{localization:LocalizedString Key=xamarin.addComponent}" HorizontalOptions="Center" VerticalOptions="Center" Command="{TemplateBinding SetComponentCommand, Mode=OneTime}"/>
                 <ContentView.Triggers>
                     <DataTrigger TargetType="ContentView" Binding="{TemplateBinding Component, Mode=OneWay, Converter={StaticResource EqualToConverter}, ConverterParameter={x:Null}}" Value="False">
                         <DataTrigger.Setters>
