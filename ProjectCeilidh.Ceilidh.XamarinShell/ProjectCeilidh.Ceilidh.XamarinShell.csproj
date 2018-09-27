@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Remove="NotificationHandle.cs" />
     <Compile Remove="Component\UiComponent.xaml.cs" />
+    <Compile Remove="Component\ContextMenu.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />

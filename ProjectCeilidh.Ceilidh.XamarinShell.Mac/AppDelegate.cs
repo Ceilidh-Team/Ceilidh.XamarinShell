@@ -1,7 +1,10 @@
-﻿using AppKit;
+﻿using System;
+using AppKit;
 using Foundation;
 using ProjectCeilidh.Ceilidh.Standard;
+using ProjectCeilidh.Ceilidh.XamarinShell.Ceilidh;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.MacOS;
 
 namespace ProjectCeilidh.Ceilidh.XamarinShell.Mac
 {

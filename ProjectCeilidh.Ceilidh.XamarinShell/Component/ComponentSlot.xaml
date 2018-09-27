@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:conv="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Converters"
     xmlns:localization="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Localization;assembly=ProjectCeilidh.Ceilidh.XamarinShell"
+    xmlns:local="clr-namespace:ProjectCeilidh.Ceilidh.XamarinShell.Component;assembly=ProjectCeilidh.Ceilidh.XamarinShell"
     x:Class="ProjectCeilidh.Ceilidh.XamarinShell.Component.ComponentSlot">
     <TemplatedView.Resources>
         <ResourceDictionary>

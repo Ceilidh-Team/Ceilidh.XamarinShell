@@ -10,7 +10,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Cobble
 
         public CobbleExportAttribute(string platform = null)
         {
-            Platform = platform == null ? default : OSPlatform.Create(platform.ToUpperInvariant());
+            Platform = platform == null ? default(OSPlatform?) : OSPlatform.Create(platform.ToUpperInvariant());
         }
     }
 }

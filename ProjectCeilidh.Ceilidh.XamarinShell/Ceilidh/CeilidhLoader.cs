@@ -21,6 +21,11 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.Ceilidh
             foreach (var loader in typeof(IUnitLoader).Assembly.GetExportedTypes()
                 .Where(x => x != typeof(IUnitLoader) && typeof(IUnitLoader).IsAssignableFrom(x)))
                 loaderContext.AddManaged(loader);
+
+            foreach (var loader in typeof(CeilidhLoader).Assembly.GetExportedTypes()
+                .Where(x => typeof(IUnitLoader).IsAssignableFrom(x)))
+                loaderContext.AddManaged(loader);
+
             loaderCallback?.Invoke(loaderContext);
             loaderContext.AddUnmanaged(startOptions);
             loaderContext.Execute();

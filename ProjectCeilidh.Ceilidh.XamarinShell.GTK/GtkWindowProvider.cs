@@ -54,7 +54,7 @@ namespace ProjectCeilidh.Ceilidh.XamarinShell.GTK
                     _window.GetSize(out var width, out var height);
                     return (width, height);
                 }
-                set => _window.SetDefaultSize((int)value.Width, (int)value.Height);
+                set => _window.Resize((int)value.Width, (int)value.Height);
             }
 
             public override (double X, double Y) Position
