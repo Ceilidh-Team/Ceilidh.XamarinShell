@@ -12,7 +12,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Text="{l:LocalizedString Key=hello, Argument=Xamarin}"/>
+        <StackLayout Orientation="Vertical">
+            <Entry Text="Xamarin" x:Name="name"/>
+            <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" />
+        </StackLayout>
         <comp:ComponentSlot SlotName="Slot" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>
